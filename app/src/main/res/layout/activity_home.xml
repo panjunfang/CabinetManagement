@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/ic_bg"
+    >
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" >
+
+        <Button
+            android:id="@+id/main_box_door1_but"
+            android:text="01"
+            style="@style/home_button_style" />
+        <Button
+            android:id="@+id/main_box_door5_but"
+            android:text="05"
+            style="@style/home_button_style"/>
+
+        <Button
+
+            android:id="@+id/main_box_door9_but"
+            android:text="09"
+            style="@style/home_button_style" />
+        <Button
+
+            android:id="@+id/main_box_door13_but"
+            android:text="13"
+            style="@style/home_button_style" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" >
+
+        <Button
+            android:id="@+id/main_box_door2_but"
+            android:text="02"
+            style="@style/home_button_style" />
+        <Button
+
+            android:id="@+id/main_box_door6_but"
+            android:text="06"
+            style="@style/home_button_style" />
+        <Button
+            android:id="@+id/main_box_door10_but"
+            android:text="10"
+
+            style="@style/home_button_style"  />
+        <Button
+
+            android:id="@+id/main_box_door14_but"
+            android:text="14"
+            style="@style/home_button_style"  />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" >
+
+        <Button
+
+            android:id="@+id/main_box_door3_but"
+            android:text="03"
+            style="@style/home_button_style"  />
+        <Button
+
+            android:id="@+id/main_box_door7_but"
+            android:text="07"
+            style="@style/home_button_style"  />
+
+        <Button
+
+            android:id="@+id/main_box_door11_but"
+            android:text="11"
+            style="@style/home_button_style"  />
+        <Button
+
+            android:id="@+id/main_box_door15_but"
+            android:text="15"
+            style="@style/home_button_style" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" >
+
+        <Button
+
+            android:id="@+id/main_box_door4_but"
+            android:text="04"
+            style="@style/home_button_style"  />
+        <Button
+
+            android:id="@+id/main_box_door8_but"
+            android:text="08"
+            style="@style/home_button_style"  />
+
+        <Button
+
+            android:id="@+id/main_box_door12_but"
+            android:text="12"
+            style="@style/home_button_style"  />
+        <Button
+
+            android:id="@+id/main_box_door16_but"
+            android:text="16"
+            style="@style/home_button_style"  />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_weight="0.6"
+        android:background="#304E6b"
+        android:layout_gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/main_pwd_tv"
+            android:textSize="30sp"
+            android:text="密码:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <EditText
+
+            android:layout_centerVertical="true"
+            android:hint="请输入"
+            android:textSize="30sp"
+            android:inputType="textPassword"
+            android:id="@+id/main_pwd_ed"
+            android:layout_toRightOf="@+id/main_pwd_tv"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"/>
+        <Button
+            android:layout_marginRight="5dp"
+            android:background="@drawable/in2_button_selector"
+            android:layout_alignBottom="@+id/main_pwd_ed"
+            android:layout_toLeftOf="@+id/main_open_but"
+            android:textSize="35sp"
+            android:text="设置"
+            android:layout_weight="0.1"
+            android:id="@+id/main_setting_but"
+            android:onClick="onClick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:background="@drawable/in2_button_selector"
+
+            android:onClick="onClick"
+            android:layout_alignParentRight="true"
+            android:layout_alignBottom="@+id/main_pwd_ed"
+            android:textSize="35sp"
+            android:text="注册"
+            android:id="@+id/main_open_but"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+    <include
+
+        layout="@layout/main_in" />
+
+
+
+</LinearLayout>

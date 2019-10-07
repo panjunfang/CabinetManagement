@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/ic_bg"
+    tools:context=".ui.ICRegisteredActivity">
+    <ImageView
+        android:onClick="onClick"
+        android:layout_alignParentRight="true"
+        android:src="@mipmap/ic_ib_back"
+        android:id="@+id/setting_back_ib"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="OnClick" />
+
+    <TextView
+        android:id="@+id/ic_tv"
+        android:textSize="30sp"
+        android:layout_marginTop="50dp"
+        android:text="IC卡注册"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:id="@+id/IC_IC_iv"
+        android:layout_centerInParent="true"
+        android:src="@mipmap/ic_ic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:background="@drawable/in2_button_selector"
+        android:id="@+id/ic_but"
+        android:onClick="onClick"
+        android:layout_marginTop="100dp"
+        android:layout_below="@+id/IC_IC_iv"
+        android:layout_centerInParent="true"
+        android:text="跳过"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:ignore="OnClick" />
+</RelativeLayout>

@@ -1,0 +1,8 @@
+<resources>
+    <drawable name="clr_normal">#304E6b</drawable>
+
+    <drawable name="clr_normal2">#264059</drawable>
+    <drawable name="clr_pressed">#7A7A7A</drawable>
+    <string name="app_name">CabinetManagement</string>
+
+</resources>
