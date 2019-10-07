@@ -21,7 +21,6 @@ public class AndroidApp extends Application {
         super.onCreate();
 
         Utils.init(this);
-        //db
         LitePal.initialize(this);
     }
     @SuppressLint("SdCardPath")

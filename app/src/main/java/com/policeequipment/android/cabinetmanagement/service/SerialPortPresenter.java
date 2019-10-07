@@ -11,7 +11,7 @@ import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.deemons.serialportlib.ByteUtils;
 import com.deemons.serialportlib.SerialPort;
-import com.policeequipment.android.cabinetmanagement.SPKey;
+import com.policeequipment.android.cabinetmanagement.util.SPKey;
 import com.policeequipment.android.cabinetmanagement.bean.BoxStatus;
 import com.policeequipment.android.cabinetmanagement.bean.DoorNumberInFo;
 
@@ -37,9 +37,8 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 import static android.content.ContentValues.TAG;
-import static com.policeequipment.android.cabinetmanagement.SPKey.InstructionSet;
-import static com.policeequipment.android.cabinetmanagement.SPKey.QueryLock1;
-import static com.policeequipment.android.cabinetmanagement.SPKey.QueryLock2;
+import static com.policeequipment.android.cabinetmanagement.util.SPKey.QueryLock1;
+import static com.policeequipment.android.cabinetmanagement.util.SPKey.QueryLock2;
 import static com.policeequipment.android.cabinetmanagement.util.StringUtil.getBoxStatusValue;
 import static com.policeequipment.android.cabinetmanagement.util.StringUtil.initListener;
 

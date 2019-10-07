@@ -3,7 +3,6 @@ package com.policeequipment.android.cabinetmanagement.service;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.util.Log;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.policeequipment.android.cabinetmanagement.bean.ActivityMessageEvent;
@@ -16,8 +15,6 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.policeequipment.android.cabinetmanagement.SPKey.InstructionSet;
 
 public class SerialPortService extends Service implements SerialPortContract.IView  {
 

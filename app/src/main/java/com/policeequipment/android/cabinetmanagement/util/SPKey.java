@@ -1,4 +1,4 @@
-package com.policeequipment.android.cabinetmanagement;
+package com.policeequipment.android.cabinetmanagement.util;
 
 /**
  * authorï¼ deemons
