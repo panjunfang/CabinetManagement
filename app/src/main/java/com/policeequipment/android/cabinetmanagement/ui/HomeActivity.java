@@ -124,10 +124,7 @@ public class HomeActivity extends BaseActivity {
         main_pwd_ed.setInputType(InputType.TYPE_NULL);
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(main_pwd_ed.getWindowToken(),0);
-
         startService(intent);
-
-
 
     }
 
