@@ -120,10 +120,6 @@ public class HomeActivity extends BaseActivity {
         buttonList.add(main_box_door14_but);
         buttonList.add(main_box_door15_but);
         buttonList.add(main_box_door16_but);
-
-
-
-
         main_pwd_ed.clearFocus();
         main_pwd_ed.setInputType(InputType.TYPE_NULL);
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -172,11 +168,8 @@ public class HomeActivity extends BaseActivity {
             if (boxStatus.isOpenState()) {
                 button.setBackgroundResource(R.mipmap.ic_bg_open_state);
 
-//                button.setBackgroundColor(Color.parseColor("#FF0000"));
-
             } else {
                 button.setBackgroundResource(R.mipmap.ic_bg_lock_door_satus);
-//                button.setBackgroundColor(Color.parseColor("#008B00"));
 
             }
         }
