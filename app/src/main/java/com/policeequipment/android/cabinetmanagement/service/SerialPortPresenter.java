@@ -563,13 +563,18 @@ public class SerialPortPresenter implements SerialPortContract.IPresenter {
                     @Override
                     public void accept(byte[] bytes) throws Exception {
 
-
+                        if (bytes.length == 0) {
+                            return;
+                        }
                         Log.e(TAG, "accept:pc下发的指令长度： " + bytes.length);
                         String PC_KEY = ByteUtils.bytesToHexString(bytes);
                         Log.e(TAG, "accept: pc指令：" + PC_KEY);
+                        if (view != null) {
 
-                        view.DoorStatus("pc下发的指令" + PC_KEY);
-                        ToastUtils.showShort("pc下发的指令" + PC_KEY);
+                            view.DoorStatus("pc下发的指令" + PC_KEY);
+                            ToastUtils.showShort("pc下发的指令" + PC_KEY);
+                        }
+
 
 
                         if (bytes.length > 0) {
