@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.policeequipment.android.cabinetmanagement.R;
 import com.policeequipment.android.cabinetmanagement.base.BaseActivity;
 import com.policeequipment.android.cabinetmanagement.bean.ServerMessageEvent;
@@ -31,6 +32,8 @@ public class MainActivity extends BaseActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                boolean ff = "FF".equals("FF");
+                LogUtils.e(ff);
                 startActivity(new Intent(MainActivity.this, HomeActivity.class));
                 MainActivity.this.finish();
 

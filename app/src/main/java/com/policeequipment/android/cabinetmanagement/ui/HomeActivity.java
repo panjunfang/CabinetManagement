@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.blankj.utilcode.util.ToastUtils;
 import com.policeequipment.android.cabinetmanagement.R;
@@ -53,6 +54,7 @@ public class HomeActivity extends BaseActivity {
     private Button main_box_door15_but;
     private Button main_box_door16_but;
     private  Intent intent;
+    private TextView tv;
 
     @Override
     protected int initLayout() {
@@ -70,6 +72,8 @@ public class HomeActivity extends BaseActivity {
     protected void initView() {
         intent =new Intent(HomeActivity.this, SerialPortService.class);
         main_pwd_ed = (EditText) findViewById(R.id.main_pwd_ed);
+        tv = (TextView) findViewById(R.id.tv);
+
 
         main_box_door1_but = (Button) findViewById(R.id.main_box_door1_but);
         main_box_door2_but = (Button) findViewById(R.id.main_box_door2_but);
@@ -153,6 +157,11 @@ public class HomeActivity extends BaseActivity {
                 List<BoxStatus> list = messageEvent.getList();
                 upDoor(list);
 
+                break;
+            case 2:
+                String icNumber = messageEvent.getIcNumber();
+
+                tv.append(icNumber);
                 break;
         }
     }

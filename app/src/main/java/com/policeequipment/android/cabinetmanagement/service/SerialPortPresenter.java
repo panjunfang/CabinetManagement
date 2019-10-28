@@ -2,15 +2,20 @@ package com.policeequipment.android.cabinetmanagement.service;
 
 import android.annotation.SuppressLint;
 import android.content.ContentValues;
+import android.os.Build;
+import android.os.Handler;
 import android.os.SystemClock;
 import android.text.TextUtils;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.deemons.serialportlib.ByteUtils;
 import com.deemons.serialportlib.SerialPort;
+import com.policeequipment.android.cabinetmanagement.AndroidApp;
 import com.policeequipment.android.cabinetmanagement.util.SPKey;
 import com.policeequipment.android.cabinetmanagement.bean.BoxStatus;
 import com.policeequipment.android.cabinetmanagement.bean.DoorNumberInFo;
@@ -97,6 +102,7 @@ public class SerialPortPresenter implements SerialPortContract.IPresenter {
     private ObservableEmitter<byte[]> mEmitter_x86;
 
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public SerialPortPresenter(SerialPortContract.IView view) {
         this.view = view;
         boxStatusList1_8 = new ArrayList<>();
@@ -169,6 +175,7 @@ public class SerialPortPresenter implements SerialPortContract.IPresenter {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void refreshValueFormSp() {
         mPath = SPUtils.getInstance().getString(SPKey.SERIAL_PORT, "");
@@ -210,6 +217,7 @@ public class SerialPortPresenter implements SerialPortContract.IPresenter {
 
 
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void OpenDoorSerialPort() {
         //门控制
         try {
@@ -223,6 +231,7 @@ public class SerialPortPresenter implements SerialPortContract.IPresenter {
             isInterrupted_box = false;
             onSendSubscribe();
             onReceiveSubscribe();
+            AndroidApp.writeFile("门箱串口开启成功");
             ToastUtils.showShort("门箱串口开启成功");
         }
 
@@ -231,6 +240,7 @@ public class SerialPortPresenter implements SerialPortContract.IPresenter {
     @SuppressLint("CheckResult")
     private void onReceiveSubscribe() {
         mReceiveDisposable = Flowable.create(new FlowableOnSubscribe<byte[]>() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void subscribe(FlowableEmitter<byte[]> emitter) throws Exception {
                 InputStream is = mSerialPort_box.getInputStream();
@@ -258,10 +268,18 @@ public class SerialPortPresenter implements SerialPortContract.IPresenter {
                     @Override
                     public void accept(byte[] bytes) throws Exception {
 
+
+
                         if (mEmitter_x86 != null) {
                             mEmitter_x86.onNext(bytes);
                         }
-                        if (bytes.length == 11) {
+
+                        String s2 = ByteUtils.bytesToHexString(bytes);
+                        if (view!=null){
+                            view.DoorStatus("门状态回调"+s2 );
+                        }
+
+                        if (bytes.length == 11||bytes.length == 10) {
                             //修改
                             byte s = bytes[5];
                             String s1 = Integer.toHexString(0xFF & s);
@@ -275,6 +293,8 @@ public class SerialPortPresenter implements SerialPortContract.IPresenter {
 
                             }
                         }
+
+
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -338,7 +358,9 @@ public class SerialPortPresenter implements SerialPortContract.IPresenter {
 
                 });
     }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void close() {
+        AndroidApp.writeFile("监听门串口关闭");
         mSerialPort_box = null;
         isInterrupted_box = true;
         disposable(mReceiveDisposable);
@@ -407,6 +429,7 @@ public class SerialPortPresenter implements SerialPortContract.IPresenter {
     @SuppressLint("CheckResult")
     private void onReceiveSubscribeIC() {
         receiveDisposable_ic= Flowable.create(new FlowableOnSubscribe<byte[]>() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void subscribe(FlowableEmitter<byte[]> emitter) throws Exception {
                 InputStream is = mSerialPort_ic.getInputStream();
@@ -504,7 +527,9 @@ public class SerialPortPresenter implements SerialPortContract.IPresenter {
             }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void close_ic() {
+        AndroidApp.writeFile("监听IC串口关闭");
         mSerialPort_ic = null;
         isInterrupted_ic = true;
         disposable(receiveDisposable_ic);
@@ -514,6 +539,7 @@ public class SerialPortPresenter implements SerialPortContract.IPresenter {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void OpenDoorSerialPort_x86() {
         //门控制
         try {
@@ -522,13 +548,13 @@ public class SerialPortPresenter implements SerialPortContract.IPresenter {
             e.printStackTrace();
             Log.e(TAG, "OpenDoorSerialPort: "+e.toString() );
             ToastUtils.showShort("PC串口开启失败");
-
+            AndroidApp.writeFile("PC串口开启失败");
         }
         if (mSerialPort_x86 != null) {
             isInterrupted_x86 = false;
             onSendSubscribe_x86();
             onReceiveSubscribe_x86();
-
+            AndroidApp.writeFile("PC串口开启成功");
             ToastUtils.showShort("PC串口开启成功");
         }
 
@@ -537,6 +563,7 @@ public class SerialPortPresenter implements SerialPortContract.IPresenter {
     @SuppressLint("CheckResult")
     private void onReceiveSubscribe_x86() {
         receivesubscribe_x86  = Flowable.create(new FlowableOnSubscribe<byte[]>() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
             @Override
             public void subscribe(FlowableEmitter<byte[]> emitter) throws Exception {
                 InputStream is = mSerialPort_x86.getInputStream();
@@ -560,12 +587,14 @@ public class SerialPortPresenter implements SerialPortContract.IPresenter {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<byte[]>() {
+                    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
                     @Override
                     public void accept(byte[] bytes) throws Exception {
 
                         if (bytes.length == 0) {
                             return;
                         }
+
                         Log.e(TAG, "accept:pc下发的指令长度： " + bytes.length);
                         String PC_KEY = ByteUtils.bytesToHexString(bytes);
                         Log.e(TAG, "accept: pc指令：" + PC_KEY);
@@ -574,7 +603,8 @@ public class SerialPortPresenter implements SerialPortContract.IPresenter {
                             view.DoorStatus("pc下发的指令" + PC_KEY);
                             ToastUtils.showShort("pc下发的指令" + PC_KEY);
                         }
-
+                        AndroidApp.writeFile("PC串口" + "accept:pc下发的指令长度： " + bytes.length);
+                        AndroidApp.writeFile("PC串口" + "accept: pc指令：" + PC_KEY);
 
 
                         if (bytes.length > 0) {
@@ -591,11 +621,24 @@ public class SerialPortPresenter implements SerialPortContract.IPresenter {
                             } else if (reverse1_2.equals("2")) {
                                 sendData(((Integer.valueOf(reverse1_8).intValue() + 8) - 1), 0);
                             }
-                            if (PC_KEY.equals("ff")) {
+
+                            if (PC_KEY.equals("ff")||PC_KEY.equals("FF")||PC_KEY.equals("00")) {
                                 byte[] bytes1 = ByteUtils.hexStringToBytes(QueryLock1);
                                 mEmitter.onNext(bytes1);
-                                byte[] bytes2 = ByteUtils.hexStringToBytes(QueryLock2);
-                                mEmitter.onNext(bytes2);
+                                if (view!=null){
+                                    view.DoorStatus("状态：查询1号板");
+                                }
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        byte[] bytes2 = ByteUtils.hexStringToBytes(QueryLock2);
+                                        mEmitter.onNext(bytes2);
+                                        if (view!=null){
+                                            view.DoorStatus("状态：查询2号板");
+                                        }
+                                    }
+                                },2000);
+
                             }
 
 //                        mEmitter.onNext(bytes);
@@ -613,7 +656,13 @@ public class SerialPortPresenter implements SerialPortContract.IPresenter {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     private void close_x86() {
+        AndroidApp.writeFile("监听门PC关闭");
+        if (view!=null){
+            view.DoorStatus("pc串口关闭" );
+        }
+
         mSerialPort_x86 = null;
         isInterrupted_x86 = true;
         disposable(receivesubscribe_x86);
@@ -684,6 +733,7 @@ public class SerialPortPresenter implements SerialPortContract.IPresenter {
         this.isICstaue = isICstaue;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     public void onDestroy(){
         view = null;
         close();
