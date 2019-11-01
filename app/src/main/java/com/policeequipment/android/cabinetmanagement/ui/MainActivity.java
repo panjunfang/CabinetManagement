@@ -14,6 +14,8 @@ import com.policeequipment.android.cabinetmanagement.bean.ServerMessageEvent;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.concurrent.atomic.DoubleAccumulator;
+
 public class MainActivity extends BaseActivity {
     @Override
     protected int initLayout() {
@@ -34,11 +36,11 @@ public class MainActivity extends BaseActivity {
             public void run() {
                 boolean ff = "FF".equals("FF");
                 LogUtils.e(ff);
-                startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                startActivity(new Intent(MainActivity.this, DoorLockControl.class));
                 MainActivity.this.finish();
 
             }
-        }, 2000);
+        }, 1000);
     }
 
     @Override

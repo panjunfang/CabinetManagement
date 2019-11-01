@@ -6,5 +6,6 @@
 
     <color name="colorKeyBlank">#dadada</color>
     <color name="colorKeyPressed">#81D4FA</color>
+    <color name="clr_normal">#304E6b</color>
 
 </resources>
