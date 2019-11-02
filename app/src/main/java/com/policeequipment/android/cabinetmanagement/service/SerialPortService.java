@@ -12,6 +12,7 @@ import com.policeequipment.android.cabinetmanagement.AndroidApp;
 import com.policeequipment.android.cabinetmanagement.bean.ActivityMessageEvent;
 import com.policeequipment.android.cabinetmanagement.bean.BoxStatus;
 import com.policeequipment.android.cabinetmanagement.bean.ServerMessageEvent;
+import com.policeequipment.android.cabinetmanagement.ui.HomeActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -26,6 +27,7 @@ public class SerialPortService extends Service implements SerialPortContract.IVi
     private boolean is;
     private List<BoxStatus> boxStatusList1_8=new ArrayList<>();
     private List<BoxStatus> boxStatusList9_16 = new ArrayList<>();
+
     public SerialPortService() {
     }
 

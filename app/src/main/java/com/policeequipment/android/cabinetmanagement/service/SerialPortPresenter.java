@@ -58,6 +58,7 @@ public class SerialPortPresenter implements SerialPortContract.IPresenter {
     private List<String> key = new ArrayList<>();
     private boolean isAllOpen;
 
+
     /**
      * 门箱
      */

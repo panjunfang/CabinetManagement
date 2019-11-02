@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.DoorLockControl"></activity>
+        <activity android:name=".ui.PasswordActivity"></activity>
+        <activity android:name=".ui.DoorLockControl" />
         <activity android:name=".ui.ICRegisteredActivity" />
         <activity android:name=".ui.RegisteredActivity" />
         <activity android:name=".ui.SettingActivity" />
@@ -31,9 +32,9 @@
             android:enabled="true"
             android:exported="true" />
     </application>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <dist:module dist:instant="true" />
 
