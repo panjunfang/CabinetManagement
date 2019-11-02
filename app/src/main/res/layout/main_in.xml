@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_marginTop="2dp"
+
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 <LinearLayout
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="120dp">
+    android:layout_height="@dimen/dp_90">
+
     <TextView
-        android:onClick="ButtonEvent"
         android:id="@+id/in_button1"
-        android:textSize="23sp"
-        android:gravity="center"
-        android:text="1"
-        android:background="@drawable/in_button_selector"
-        android:layout_weight="1"
         android:layout_width="0dp"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/in_button_selector"
+        android:gravity="center"
+        android:onClick="ButtonEvent"
+        android:text="1"
+        android:textColor="#ffff"
+        android:textSize="@dimen/sp_25"
+        android:textStyle="bold" />
     <TextView
+        android:textStyle="bold"
+        android:textColor="#ffff"
         android:onClick="ButtonEvent"
         android:id="@+id/in_button2"
-        android:textSize="23sp"
+        android:textSize="@dimen/sp_25"
         android:gravity="center"
         android:text="2"
         android:background="@drawable/in_button_selector"
@@ -30,12 +35,14 @@
         android:layout_width="0dp"
         android:layout_height="match_parent" />
     <TextView
+        android:textColor="#ffff"
         android:onClick="ButtonEvent"
         android:id="@+id/in_button3"
-        android:textSize="23sp"
+        android:textSize="@dimen/sp_25"
         android:layout_marginLeft="1dp"
         android:gravity="center"
         android:text="3"
+        android:textStyle="bold"
         android:background="@drawable/in_button_selector"
         android:layout_weight="1"
         android:layout_width="0dp"
@@ -45,11 +52,13 @@
         android:layout_marginTop="2dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="120dp">
+        android:layout_height="@dimen/dp_90">
         <TextView
+            android:textStyle="bold"
+            android:textColor="#ffff"
             android:onClick="ButtonEvent"
             android:id="@+id/in_button4"
-            android:textSize="23sp"
+            android:textSize="@dimen/sp_25"
             android:gravity="center"
             android:text="4"
             android:background="@drawable/in_button_selector"
@@ -57,9 +66,11 @@
             android:layout_width="0dp"
             android:layout_height="match_parent" />
         <TextView
+            android:textStyle="bold"
+            android:textColor="#ffff"
             android:onClick="ButtonEvent"
             android:id="@+id/in_button5"
-            android:textSize="23sp"
+            android:textSize="@dimen/sp_25"
             android:background="@drawable/in_button_selector"
             android:layout_marginLeft="1dp"
             android:gravity="center"
@@ -68,9 +79,11 @@
             android:layout_width="0dp"
             android:layout_height="match_parent" />
         <TextView
+            android:textStyle="bold"
+            android:textColor="#ffff"
             android:onClick="ButtonEvent"
             android:id="@+id/in_button6"
-            android:textSize="23sp"
+            android:textSize="@dimen/sp_25"
             android:background="@drawable/in_button_selector"
             android:layout_marginLeft="1dp"
             android:gravity="center"
@@ -83,11 +96,13 @@
         android:layout_marginTop="2dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="120dp">
+        android:layout_height="@dimen/dp_90">
         <TextView
+            android:textStyle="bold"
+            android:textColor="#ffff"
             android:onClick="ButtonEvent"
             android:id="@+id/in_button7"
-            android:textSize="23sp"
+            android:textSize="@dimen/sp_25"
             android:gravity="center"
             android:text="7"
             android:background="@drawable/in_button_selector"
@@ -95,10 +110,12 @@
             android:layout_width="0dp"
             android:layout_height="match_parent" />
         <TextView
+            android:textStyle="bold"
+            android:textColor="#ffff"
             android:onClick="ButtonEvent"
             android:id="@+id/in_button8"
             android:background="@drawable/in_button_selector"
-            android:textSize="23sp"
+            android:textSize="@dimen/sp_25"
             android:layout_marginLeft="1dp"
             android:gravity="center"
             android:text="8"
@@ -106,9 +123,11 @@
             android:layout_width="0dp"
             android:layout_height="match_parent" />
         <TextView
+            android:textStyle="bold"
+            android:textColor="#ffff"
             android:onClick="ButtonEvent"
             android:id="@+id/in_button9"
-            android:textSize="23sp"
+            android:textSize="@dimen/sp_25"
             android:background="@drawable/in_button_selector"
             android:layout_marginLeft="1dp"
             android:gravity="center"
@@ -121,21 +140,24 @@
         android:layout_marginTop="2dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="120dp">
+        android:layout_height="@dimen/dp_90">
         <TextView
+            android:textColor="#ffff"
             android:onClick="ButtonEvent"
             android:id="@+id/in_button_delete"
             android:background="@drawable/in2_button_selector"
-            android:textSize="23sp"
+            android:textSize="@dimen/sp_25"
             android:gravity="center"
             android:text="回删"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent" />
         <TextView
+            android:textStyle="bold"
+            android:textColor="#ffff"
             android:onClick="ButtonEvent"
             android:id="@+id/in_button0"
-            android:textSize="23sp"
+            android:textSize="@dimen/sp_25"
             android:background="@drawable/in_button_selector"
             android:layout_marginLeft="1dp"
             android:gravity="center"
@@ -144,6 +166,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent" />
         <TextView
+
+            android:textColor="#ffff"
             android:onClick="ButtonEvent"
             android:id="@+id/in_button_Features"
             android:textSize="23sp"

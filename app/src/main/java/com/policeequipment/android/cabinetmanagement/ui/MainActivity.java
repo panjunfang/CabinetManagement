@@ -6,12 +6,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.blankj.utilcode.util.LogUtils;
 import com.policeequipment.android.cabinetmanagement.R;
 import com.policeequipment.android.cabinetmanagement.base.BaseActivity;
 import com.policeequipment.android.cabinetmanagement.bean.ServerMessageEvent;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.concurrent.atomic.DoubleAccumulator;
 
 public class MainActivity extends BaseActivity {
     @Override
@@ -31,11 +34,13 @@ public class MainActivity extends BaseActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                boolean ff = "FF".equals("FF");
+                LogUtils.e(ff);
+                startActivity(new Intent(MainActivity.this, DoorLockControl.class));
                 MainActivity.this.finish();
 
             }
-        }, 2000);
+        }, 1000);
     }
 
     @Override

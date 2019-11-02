@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.ICRegisteredActivity"></activity>
+        <activity android:name=".ui.PasswordActivity"></activity>
+        <activity android:name=".ui.DoorLockControl" />
+        <activity android:name=".ui.ICRegisteredActivity" />
         <activity android:name=".ui.RegisteredActivity" />
         <activity android:name=".ui.SettingActivity" />
         <activity android:name=".ui.HomeActivity" />

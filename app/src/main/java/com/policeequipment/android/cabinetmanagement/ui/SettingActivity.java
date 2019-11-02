@@ -23,7 +23,7 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.blankj.utilcode.util.Utils;
 import com.deemons.serialportlib.SerialPortFinder;
 import com.policeequipment.android.cabinetmanagement.R;
-import com.policeequipment.android.cabinetmanagement.SPKey;
+import com.policeequipment.android.cabinetmanagement.util.SPKey;
 import com.policeequipment.android.cabinetmanagement.bean.ActivityMessageEvent;
 import com.policeequipment.android.cabinetmanagement.bean.DoorNumberInFo;
 import com.policeequipment.android.cabinetmanagement.bean.ServerMessageEvent;

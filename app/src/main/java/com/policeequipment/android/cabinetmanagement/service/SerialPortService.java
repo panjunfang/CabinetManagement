@@ -2,13 +2,17 @@ package com.policeequipment.android.cabinetmanagement.service;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.Build;
 import android.os.IBinder;
-import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import com.blankj.utilcode.util.LogUtils;
+import com.policeequipment.android.cabinetmanagement.AndroidApp;
 import com.policeequipment.android.cabinetmanagement.bean.ActivityMessageEvent;
 import com.policeequipment.android.cabinetmanagement.bean.BoxStatus;
 import com.policeequipment.android.cabinetmanagement.bean.ServerMessageEvent;
+import com.policeequipment.android.cabinetmanagement.ui.HomeActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -17,37 +21,41 @@ import org.greenrobot.eventbus.ThreadMode;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.policeequipment.android.cabinetmanagement.SPKey.InstructionSet;
-
 public class SerialPortService extends Service implements SerialPortContract.IView  {
 
     private SerialPortPresenter portPresenter;
     private boolean is;
     private List<BoxStatus> boxStatusList1_8=new ArrayList<>();
     private List<BoxStatus> boxStatusList9_16 = new ArrayList<>();
+
     public SerialPortService() {
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onCreate() {
         super.onCreate();
         EventBus.getDefault().register(this);
         portPresenter = new SerialPortPresenter(this);
+        AndroidApp.writeFile("服务启动");
+
     }
 
     @Override
     public IBinder onBind(Intent intent) {
         return null;
     }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onDestroy() {
         super.onDestroy();
         LogUtils.i("结束");
-
+        AndroidApp.writeFile("服务关闭");
         portPresenter.onDestroy();
         EventBus.getDefault().unregister(this);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void EvnActivity(ActivityMessageEvent messageEvent){
         LogUtils.i("服务收到的指令" + messageEvent.getMessenger());
@@ -120,7 +128,10 @@ public class SerialPortService extends Service implements SerialPortContract.IVi
 
     @Override
     public void DoorStatus(String s) {
-
+        ServerMessageEvent serverMessageEvent = new ServerMessageEvent();
+        serverMessageEvent.setMessenger(2);
+        serverMessageEvent.setIcNumber(s);
+        EventBus.getDefault().post(serverMessageEvent);
     }
 
     @Override

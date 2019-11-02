@@ -4,17 +4,15 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.SystemClock;
 import android.text.InputType;
 import android.text.TextUtils;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
-import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.policeequipment.android.cabinetmanagement.R;
 import com.policeequipment.android.cabinetmanagement.base.BaseActivity;
@@ -29,21 +27,10 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.litepal.LitePal;
 
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.BackpressureStrategy;
-import io.reactivex.Flowable;
-import io.reactivex.FlowableEmitter;
-import io.reactivex.FlowableOnSubscribe;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
-
-import static android.content.ContentValues.TAG;
-import static com.policeequipment.android.cabinetmanagement.SPKey.Administrator_password;
-import static com.policeequipment.android.cabinetmanagement.util.StringUtil.initListener;
+import static com.policeequipment.android.cabinetmanagement.util.SPKey.Administrator_password;
 
 public class HomeActivity extends BaseActivity {
 
@@ -67,6 +54,7 @@ public class HomeActivity extends BaseActivity {
     private Button main_box_door15_but;
     private Button main_box_door16_but;
     private  Intent intent;
+    private TextView tv;
 
     @Override
     protected int initLayout() {
@@ -84,6 +72,8 @@ public class HomeActivity extends BaseActivity {
     protected void initView() {
         intent =new Intent(HomeActivity.this, SerialPortService.class);
         main_pwd_ed = (EditText) findViewById(R.id.main_pwd_ed);
+        tv = (TextView) findViewById(R.id.tv);
+
 
         main_box_door1_but = (Button) findViewById(R.id.main_box_door1_but);
         main_box_door2_but = (Button) findViewById(R.id.main_box_door2_but);
@@ -134,18 +124,11 @@ public class HomeActivity extends BaseActivity {
         buttonList.add(main_box_door14_but);
         buttonList.add(main_box_door15_but);
         buttonList.add(main_box_door16_but);
-
-
-
-
         main_pwd_ed.clearFocus();
         main_pwd_ed.setInputType(InputType.TYPE_NULL);
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
         imm.hideSoftInputFromWindow(main_pwd_ed.getWindowToken(),0);
-
         startService(intent);
-
-
 
     }
 
@@ -175,6 +158,11 @@ public class HomeActivity extends BaseActivity {
                 upDoor(list);
 
                 break;
+            case 2:
+                String icNumber = messageEvent.getIcNumber();
+
+                tv.append(icNumber);
+                break;
         }
     }
 
@@ -186,11 +174,8 @@ public class HomeActivity extends BaseActivity {
             if (boxStatus.isOpenState()) {
                 button.setBackgroundResource(R.mipmap.ic_bg_open_state);
 
-//                button.setBackgroundColor(Color.parseColor("#FF0000"));
-
             } else {
                 button.setBackgroundResource(R.mipmap.ic_bg_lock_door_satus);
-//                button.setBackgroundColor(Color.parseColor("#008B00"));
 
             }
         }

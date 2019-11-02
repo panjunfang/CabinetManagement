@@ -2,6 +2,9 @@ package com.policeequipment.android.cabinetmanagement;
 
 import android.annotation.SuppressLint;
 import android.app.Application;
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
 
 import com.blankj.utilcode.util.Utils;
 
@@ -21,9 +24,9 @@ public class AndroidApp extends Application {
         super.onCreate();
 
         Utils.init(this);
-        //db
         LitePal.initialize(this);
     }
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @SuppressLint("SdCardPath")
     public static void writeFile(String sb) {
         FileWriter fw = null;
